@@ -1,6 +1,6 @@
 {
   "name": "task-bunny",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "a simple task list app built with nodejs",
   "main": "dist/src/es6/main.js",
   "scripts": {
@@ -13,7 +13,9 @@
     "tb": "dist/src/es6/main.js",
     "task-bunny": "dist/src/es6/main.js"
   },
-  "files": ["dist"],
+  "files": [
+    "dist"
+  ],
   "keywords": [],
   "author": "",
   "type": "module",
