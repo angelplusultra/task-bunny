@@ -4,7 +4,6 @@ const options = {
   disabled: false,
   interactive: false,
   logLevel: "info",
-  scope: "custom",
   secrets: [],
   stream: process.stdout,
   types: {

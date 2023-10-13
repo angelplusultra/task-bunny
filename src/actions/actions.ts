@@ -3,9 +3,19 @@ import { addTodo, getTodos, spaceLogger, writeToDataFile } from "../utils";
 import inquirer from "inquirer";
 import { custom } from "../config";
 
-export function addTask(task: string[] | string) {
-  const todo = Array.isArray(task) ? task.join(" ") : task;
-
+export async function addTask(task: string[] | void) {
+  interface TaskPrompt {
+    body: string;
+  }
+  let todo = Array.isArray(task) ? task.join(" ") : task;
+  if (!todo) {
+    const taskObject = await inquirer.prompt<TaskPrompt>({
+      name: "body",
+      type: "input",
+      message: "Enter Task: \n",
+    });
+    todo = taskObject.body;
+  }
   addTodo(todo);
 
   spaceLogger(`New tasks added!: ${todo}`, "success");
@@ -13,7 +23,7 @@ export function addTask(task: string[] | string) {
 export async function deleteTask() {
   const data = getTodos();
   if (data.data.length === 0) {
-		spaceLogger('You currently have no tasks', 'error')
+    spaceLogger("You currently have no tasks", "error");
     process.exit(1);
   }
   const answer = await inquirer.prompt<{
@@ -43,7 +53,11 @@ export function getAndLogTasks() {
   }
 
   tasks.forEach((todo) => {
-    custom.task(`${todo.body}`);
+    custom.task({
+      suffix: !todo.completed ? `[❗️]` : `[✅]`,
+      message: todo.body,
+      prefix: `[${todo.id}]`,
+    });
     console.log();
     console.log("-----------------------------------------");
     console.log();
@@ -57,4 +71,36 @@ export function clearTasks() {
     latestId: data.latestId,
   });
   spaceLogger("All tasks have been deleted", "success");
+}
+
+export async function markTaskComplete(id: string | void) {
+  const data = getTodos();
+	if(data.data.length === 0){
+		spaceLogger('No tasks', 'error')
+		process.exit(1)
+	}
+
+  let taskId = id;
+  if (!id) {
+    const choices = data.data.map((task) => ({
+      name: task.body,
+      value: task.id,
+    }));
+    const taskSelection = await inquirer.prompt({
+      name: "id",
+      type: "list",
+      choices,
+    });
+    taskId = taskSelection.id;
+  }
+  const task = data.data.find((task) => task.id === Number(taskId));
+  if (!task) {
+    spaceLogger("No task exists with that ID", "error");
+  } else {
+    task.completed = true;
+
+    writeToDataFile(data);
+
+    spaceLogger("Task has been marked complete", "complete");
+  }
 }

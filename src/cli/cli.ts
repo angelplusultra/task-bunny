@@ -1,42 +1,45 @@
 import inquirer from "inquirer";
-import { addTodo, getTodos } from "../utils";
 import { delay } from "utilitrix";
 import signale from "signale";
 import * as actions from "../actions";
 export interface ChoicePrompt {
-  answer: "List Tasks" | "Add Task" | "Delete Task" | "Clear Tasks";
+  answer: Answer;
 }
 
-export interface TaskPrompt {
-  body: string;
-}
+export type ActionFunction = (typeof actions)[keyof typeof actions];
+
+export type Answer =
+  | "List Tasks"
+  | "Add Task"
+  | "Delete Task"
+  | "Clear Tasks"
+  | "Mark Complete";
 
 export async function taskBunnyCli() {
+  const actionRouter: {
+    [key in Answer]: ActionFunction;
+  } = {
+    "Add Task": actions.addTask,
+    "List Tasks": actions.getAndLogTasks,
+    "Clear Tasks": actions.clearTasks,
+    "Delete Task": actions.deleteTask,
+    "Mark Complete": actions.markTaskComplete,
+  };
   signale.log("Welcome to Task Bunny!");
-  await delay(3000);
+  await delay(2000);
   console.clear();
   const choice = await inquirer.prompt<ChoicePrompt>({
     name: "answer",
     type: "list",
     message: "What would you like to do?",
-    choices: ["List Tasks", "Add Task", "Delete Task", "Clear Tasks"],
+    choices: [
+      "List Tasks",
+      "Add Task",
+      "Delete Task",
+      "Clear Tasks",
+      "Mark Complete",
+    ],
   });
 
-  if (choice.answer === "Add Task") {
-    const task = await inquirer.prompt<TaskPrompt>({
-      name: "body",
-      type: "input",
-      message: "Enter Task: \n",
-    });
-    actions.addTask(task.body);
-  }
-  if (choice.answer === "List Tasks") {
-    actions.getAndLogTasks();
-  }
-  if (choice.answer === "Delete Task") {
-    actions.deleteTask();
-  }
-	if(choice.answer === 'Clear Tasks'){
-		actions.clearTasks()
-	}
+  actionRouter[choice.answer]();
 }
