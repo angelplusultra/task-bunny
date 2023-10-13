@@ -13,6 +13,7 @@
     "tb": "dist/src/es6/main.js",
     "task-bunny": "dist/src/es6/main.js"
   },
+  "files": ["dist"],
   "keywords": [],
   "author": "",
   "type": "module",
