@@ -1,0 +1,7 @@
+#!/usr/bin/env node --experimental-specifier-resolution=node --no-warnings
+
+
+import { init } from "./config";
+
+init()
+

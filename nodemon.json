@@ -1,0 +1,8 @@
+{
+  "watch": [""],
+  "events": {
+	  "start": "clear"
+  },
+  "ext": "ts",
+  "exec": "node --experimental-specifier-resolution=node --loader ts-node/esm --no-warnings"
+}
