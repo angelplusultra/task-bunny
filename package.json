@@ -1,6 +1,6 @@
 {
   "name": "task-bunny",
-  "version": "0.1.2",
+  "version": "0.1.3",
   "description": "a simple task list app built with nodejs",
   "main": "dist/lib/main.js",
   "scripts": {

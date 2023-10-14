@@ -1,5 +1,12 @@
 # task-bunny
 
+## 0.1.3
+
+### Patch Changes
+
+- 841394a: Revised delete and complete commands/actions
+- 42f4562: Revised package.json and tsconfig.es5.json
+
 ## 0.1.1
 
 ### Patch Changes
