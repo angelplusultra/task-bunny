@@ -6,4 +6,4 @@ deleteTask
   .alias("d")
   .description("Delete a single task")
   .action(actions.deleteTask)
-  .argument("[id...]");
+  .argument("[id]");

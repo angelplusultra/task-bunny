@@ -1,7 +1,7 @@
 import { Command } from "commander";
-export const complete = new Command("complete");
 import * as actions from "../actions";
 
+export const complete = new Command("complete");
 complete
   .description("Mark a single task as complete")
   .action(actions.markTaskComplete)
