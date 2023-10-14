@@ -6,6 +6,7 @@ export interface ChoicePrompt {
   answer: Answer;
 }
 
+
 export type ActionFunction = (typeof actions)[keyof typeof actions];
 
 export type Answer =
