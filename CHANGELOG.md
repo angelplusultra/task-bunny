@@ -1,5 +1,11 @@
 # task-bunny
 
+## 0.1.1
+
+### Patch Changes
+
+- d60f789: revised package.json for binaries to use correct prod code
+
 ## 0.1.0
 
 ### Minor Changes
