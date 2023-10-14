@@ -1,5 +1,11 @@
 # task-bunny
 
+## 0.1.0
+
+### Minor Changes
+
+- 5986594: Switched inquirer to version 8, switched production code to use es5 modules
+
 ## 0.0.4
 
 ### Patch Changes
