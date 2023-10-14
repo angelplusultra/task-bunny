@@ -20,24 +20,33 @@ export async function addTask(task: string[] | void) {
 
   spaceLogger(`New tasks added!: ${todo}`, "success");
 }
-export async function deleteTask() {
+export async function deleteTask(id: string | void) {
   const data = getTodos();
   if (data.data.length === 0) {
     spaceLogger("You currently have no tasks", "error");
     process.exit(1);
   }
-  const answer = await inquirer.prompt<{
-    delete: number;
-  }>({
-    name: "delete",
-    type: "list",
-    choices: data.data.map((todo) => ({
-      name: todo.body,
-      value: todo.id as number,
-    })),
-  });
+  if (id === undefined) {
+    const answer = await inquirer.prompt<{
+      delete: string;
+    }>({
+      name: "delete",
+      type: "list",
+      choices: data.data.map((todo) => ({
+        name: todo.body,
+        value: todo.id,
+      })),
+    });
+    id = answer.delete;
+  }
+  const taskId = Number(id);
 
-  data.data = data.data.filter((todo) => todo.id !== answer.delete);
+  const task = data.data.find((task) => task.id === taskId);
+  if (!task) {
+    spaceLogger("No task exists with the provided ID", "error");
+    process.exit(1);
+  }
+  data.data = data.data.filter((todo) => todo.id !== taskId);
 
   writeToDataFile(data);
 

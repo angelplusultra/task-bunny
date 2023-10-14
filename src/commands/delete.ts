@@ -5,4 +5,5 @@ export const deleteTask = new Command("delete");
 deleteTask
   .alias("d")
   .description("Delete a single task")
-  .action(actions.deleteTask);
+  .action(actions.deleteTask)
+  .argument("[id...]");
