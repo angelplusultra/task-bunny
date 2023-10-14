@@ -2,7 +2,7 @@
   "name": "task-bunny",
   "version": "0.1.0",
   "description": "a simple task list app built with nodejs",
-  "main": "dist/src/es6/main.js",
+  "main": "dist/src/es5/main.js",
   "scripts": {
     "watch": "nodemon src/main.ts",
     "dev": "clear && ts-node --experimentalSpecifierResolution node src/main.ts",
@@ -12,8 +12,8 @@
     "build-es5": "rm -rf ./dist/src && tsc --build tsconfig.es5.json"
   },
   "bin": {
-    "tb": "dist/src/es6/main.js",
-    "task-bunny": "dist/src/es6/main.js"
+    "tb": "dist/src/es5/main.js",
+    "task-bunny": "dist/src/es5/main.js"
   },
   "files": [
     "dist"
