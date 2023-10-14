@@ -1,5 +1,12 @@
 # task-bunny
 
+## 0.1.4
+
+### Patch Changes
+
+- 55e05ef: Revised README | Revised package.json
+- 1cf71bc: Fixed bug in delete and complete commands
+
 ## 0.1.3
 
 ### Patch Changes
