@@ -7,7 +7,9 @@
     "watch": "nodemon src/main.ts",
     "dev": "clear && ts-node --experimentalSpecifierResolution node src/main.ts",
     "test": "jest",
-    "build": "rm -rf ./dist/src && tsc"
+    "build": "rm -rf ./dist/src && tsc",
+	"start": "node ./dist/src/es5/main.js",
+	"build-es5": "rm -rf ./dist/src && tsc --build tsconfig.es5.json"
   },
   "bin": {
     "tb": "dist/src/es6/main.js",
@@ -18,7 +20,6 @@
   ],
   "keywords": [],
   "author": "",
-  "type": "module",
   "license": "ISC",
   "devDependencies": {
     "@changesets/cli": "^2.26.2",
@@ -31,7 +32,7 @@
   },
   "dependencies": {
     "commander": "^11.0.0",
-    "inquirer": "^9.2.11",
+    "inquirer": "^8.2.6",
     "signale": "^1.4.0",
     "utilitrix": "^1.1.8"
   }

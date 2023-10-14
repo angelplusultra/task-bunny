@@ -75,10 +75,10 @@ export function clearTasks() {
 
 export async function markTaskComplete(id: string | void) {
   const data = getTodos();
-	if(data.data.length === 0){
-		spaceLogger('No tasks', 'error')
-		process.exit(1)
-	}
+  if (data.data.length === 0) {
+    spaceLogger("No tasks", "error");
+    process.exit(1);
+  }
 
   let taskId = id;
   if (!id) {
@@ -89,6 +89,7 @@ export async function markTaskComplete(id: string | void) {
     const taskSelection = await inquirer.prompt({
       name: "id",
       type: "list",
+      message: "Select the task: ",
       choices,
     });
     taskId = taskSelection.id;
