@@ -1,6 +1,3 @@
-Certainly! Here's an updated README.md for your Task Bunny CLI tool with the usage information you provided:
-
-```markdown
 # Task Bunny
 
 Task Bunny is a simple and efficient command-line task manager designed to help you keep track of your to-do lists and tasks directly from your terminal. It provides a straightforward interface with essential commands for managing your tasks.

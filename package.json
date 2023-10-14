@@ -18,9 +18,10 @@
   "files": [
     "dist"
   ],
-  "keywords": [],
-  "author": "",
+  "keywords": ["todo-list", "cli", "cli-tool", "task-manager"],
+  "author": "Hunterbidenafterlife",
   "license": "ISC",
+  "repository": "https://github.com/angelplusultra/task-bunny",
   "devDependencies": {
     "@changesets/cli": "^2.26.2",
     "@types/inquirer": "^9.0.4",
